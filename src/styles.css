@@ -1,0 +1,351 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  /* Colors */
+
+  /*Color primario - verde*/
+  --primary-default: #5cc500;
+  --primary-dark: #199300;
+  --primary-light: yellowgreen;
+
+  /*Color secundario - azul*/
+  --basic-default: #00a9e0;
+  --basic-dark: #0079ae;
+  --basic-light: #62daff;
+
+  /*Color secundario - azul*/
+  --warn-default: #F50612;
+  --warn-dark: rgb(231, 0, 0);
+  --warn-light: rgb(255, 21, 33);
+
+  /*Color texto - gris*/
+  --dark-default: #767a7a;
+  --dark-dark: #3b3c3f;
+  --dark-light: #d3d4d3;
+
+  --ligth-default: #ffffff;
+  --ligth-dark: #f8f8f8;
+  --ligth-light: #ffffff;
+}
+
+* { 
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.75;
+  letter-spacing: normal;
+  /*color: var(--dark-dark);*/
+}
+
+body{
+  min-width: 840px !important;
+  height: 100%;
+  width: 100%;
+}
+
+.mat-menu-content {
+  border-radius: 15px !important;
+  background-color: var(--primary-default) !important;
+  padding: 0 !important;
+}
+
+.mat-menu-panel {
+  box-shadow: none !important;
+  border-radius: 17px !important;
+  max-width: none !important;
+  position: relative;
+  right: 0px;
+  bottom: 20px;
+  padding: 0;
+}
+
+.mat-checkbox-layout {
+  white-space: pre-wrap !important;
+}
+
+.mat-progress-bar {
+  height: 1rem !important;
+}
+
+.mat-stroked-button {
+  border-radius: 1rem !important;
+}
+
+/*-------------- mensaje --------------*/
+.mensaje {
+  height: auto !important;
+  width: auto !important;
+  min-width: 400px;
+  max-width: 50% !important;
+  padding: 0.5rem !important;
+}
+
+.mat-dialog-container {
+  border-radius: 2rem !important;
+}
+
+/*------- Cuadro de notificación ----------*/
+.mat-snack-bar-container {
+  color: var(--ligth-dark) !important;
+  background: var(--basic-default) !important;
+}
+.mat-simple-snackbar-action button {
+  color: var(--dark-dark) !important;
+}
+
+.oculto {
+  display: none !important;
+}
+/* --------------------   Estilo formularios ---------------------*/
+/*  Titulo pantalla  */
+.tittle-option {
+  font-size: 1.8rem !important;
+  font-weight: bold !important;
+  letter-spacing: -0.33px !important;
+  padding: 1.5rem 0 !important;
+}
+
+/*  Tabs  */
+.tab-opciones .mat-ink-bar {
+  width: 50% !important;
+}
+
+.tab-opciones .mat-tab-label {
+  width: 50% !important;
+}
+
+.mat-tab-labels {
+  justify-content: center !important;
+}
+
+/*   Formulario   */
+.formulario {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 9px 0 var(--dark-light);
+  background-color: var(--ligth-default);
+}
+
+/*  Mensaje error campo  */
+.mat-error {
+  font-size: 0.8rem;
+  line-height: 0.95;
+}
+
+.mat-hint {
+  font-size: 0.8rem !important;
+}
+
+/*  Botones formulario  */
+.btn-formulario {
+  margin-top: 2.5rem;
+  justify-content: flex-end!important;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div.btn-formulario button {
+  border-radius: 1.1rem !important;
+}
+
+.btn-cancelar{
+  color: var(--warn-default) !important;
+  text-transform: uppercase !important;
+  margin-right: 1.5rem !important;
+}
+
+/** ----------- checkbox -----------*/
+.mat-checkbox-frame{
+  border-radius: 50% !important;
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+.mat-checkbox-background{
+  border-radius: 50% !important;
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+.margen {
+  margin-left: 255px;
+}
+
+
+/* ----------------- Estilo Tabla ---------------------- */
+.tabla {
+  margin: 2rem 0;
+}
+
+/*  Filtro  */
+.tabla-filtro {
+  width: 50% !important;
+}
+
+.tabla-informacion {
+  margin-bottom: 1rem !important;
+  max-height: 500px;
+  overflow: auto;
+}
+
+table.mat-table {
+  width: 100%;
+}
+
+/*Texto cabecera tabla*/
+.mat-sort-header-button {
+  font-weight: bold !important;
+  line-height: 1.75 !important;
+  letter-spacing: normal !important;
+  color: var(--dark-dark) !important;
+}
+
+.mat-column-activo{
+  width: 9rem !important;
+}
+
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+  padding: 0.4rem !important;
+  /*border-bottom-width: 1px;*/
+  /*border-bottom-style: solid;*/
+  border-bottom-color: var(--basic-default) !important;
+}
+
+/* --------------- Estilo Scroll ----------------- */
+/* Tamaño del scroll */
+::-webkit-scrollbar {
+  width: 0.5rem!important;
+  height: 0.5rem !important;
+}
+
+ /* Estilos barra (thumb) de scroll */
+::-webkit-scrollbar-thumb {
+  background: var(--basic-default);
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: var(--primary-default);
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-default);
+  box-shadow: 0 0 2px 1px var(--dark-dark);
+}
+
+ /* Estilos track de scroll */
+::-webkit-scrollbar-track {
+  background: var(--dark-light);
+  border-radius: 1rem;
+}
+
+/*-------------- popups ---------------*/
+.popups {
+  width: 100% !important;
+  height: 90% !important;
+  min-width: 500px !important;
+  min-height: 500px !important;
+  max-width: 65vw !important;
+  max-height: 90% !important;
+}
+
+.btn-volver{
+  padding-right: 32px;
+  float: right;  
+  width: auto;
+  color: var(--primary-default) !important;
+}
+
+.estado-popup {
+  cursor: not-allowed !important;
+}
+
+
+/* Opciones Selector */
+.mat-option {
+  font-size: 0.8rem !important;
+  height: 2.5rem !important;
+  line-height: 1rem !important;
+}
+
+/*-------------------- Selector autocomplete ------------------*/
+.selector-autocomplete {
+  border-radius: 5px !important;
+  width: auto !important;
+}
+
+.selector-autocomplete .mat-option {
+  display: table-row;
+}
+
+.selector-autocomplete .mat-option .mat-option-text {
+  line-height: 1 !important;
+  padding: 0 1rem !important;
+  width: 100% !important;
+  font-weight: bold !important;
+  color: var(--dark-dark);
+}
+
+.selector-autocomplete .mat-option .mat-option-text:hover{
+  background: var(--primary-default) !important;
+}
+
+.selector-tipomoneda {
+  border-radius: 5px !important;
+  width: auto !important;
+}
+
+.selector-tipomoneda .mat-option {
+  display: table-row;
+}
+
+.selector-tipomoneda .mat-option .mat-option-text {
+  line-height: 1 !important;
+  padding: 0 1rem !important;
+  width: 120px !important;
+  font-weight: bold !important;
+  color: var(--dark-dark);
+}
+
+.selector-tipomoneda .mat-option .mat-option-text:hover{
+  background: var(--primary-default) !important;
+}
+
+.mat-option:hover{
+  background: var(--primary-light) !important;
+}
+
+/*  Botones flotantes  */
+.div-flotante {
+  position: sticky; 
+  bottom: 0; 
+  margin-top: 1rem;
+  justify-content: center !important;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  background-color: #ffffff;
+  padding: 0.5rem;
+}
+
+.btn-flotante {
+  color: #ffffff;
+  background-color: #00a9e0;
+  margin-right: 1rem !important;
+  border-top-left-radius: 1.1rem !important;
+  border-top-right-radius: 1.1rem !important;
+  border-bottom-right-radius: 1.1rem !important;
+  border-bottom-left-radius: 1.1rem !important;
+  margin-bottom: 1rem !important;
+  margin-top: 1rem !important;
+}
+
+/*  Inputs de resultado  */
+.input-sumatoria {
+  text-align: right; 
+  background-color: #ebebeb; 
+  font-weight: bold;
+}

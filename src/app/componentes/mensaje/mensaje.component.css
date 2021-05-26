@@ -1,0 +1,50 @@
+
+
+.contenedor-iconos {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.mat-icon {
+    height: 24px;
+    width: 24px;
+    margin: 0 1rem 20px;
+}
+
+button {
+    margin: 0 auto;
+    width: 130px;
+    border-radius: 20px;
+    font-family: 'Roboto';
+    color: #FFF !important;
+}
+
+button:focus {
+    outline: none;
+}
+
+  
+.boton-ok {
+    background: var(--primary-default);
+}
+
+  
+.mat-dialog-content {
+    border-radius: 1rem;
+    padding: 1rem !important;
+    margin: 0.2rem !important;
+    background-color: whitesmoke!important;
+    text-align: justify !important;
+}
+  
+
+.titulo-error {
+    color: var(--warn-default);
+}
+
+.texto-mensaje {
+    text-align: justify !important;
+    white-space: pre-line !important;
+}
+

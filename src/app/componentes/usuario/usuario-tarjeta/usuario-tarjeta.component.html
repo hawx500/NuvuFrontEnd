@@ -1,0 +1,111 @@
+<app-cargando *ngIf="cargando"></app-cargando>
+
+<div class="container">
+    <div class="btn-volver">
+        <button mat-icon-button color="primary" (click)="Volver()" matTooltip="Hacer clic para retornar al formulario">
+            <mat-icon color="primary">arrow_back</mat-icon>
+            Volver
+        </button>
+    </div>
+    <h3 class="tittle-option"> Tarjetas Usuario</h3>
+
+    <form [formGroup]="formTarjetaUsuario" class="formulario">
+        <div class="form-row mt-3">
+            <mat-form-field class="example-full-width col-md-5"
+                [hideRequiredMarker]="(opcionSeleccionada == opciones.Buscar)">
+                <input matInput placeholder="Número Tarjeta" formControlName="numeroTarjeta" type="number"
+                    maxlength="16" [errorStateMatcher]="validador" [required]="(opcionSeleccionada != opciones.Buscar)"
+                    SoloNumeros>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width col-md-5"
+                [hideRequiredMarker]="(opcionSeleccionada == opciones.Buscar)">
+                <input matInput #campoReferencia placeholder="Nombre Tarjeta" formControlName="nombreTarjeta"
+                    [errorStateMatcher]="validador" type="text" maxlength="40"
+                    [required]="(opcionSeleccionada != opciones.Buscar)">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width col-md-5" (click)="fechaCaducidad.open()"
+                [hideRequiredMarker]="(opcionSeleccionada == opciones.Buscar)">
+                <input matInput [matDatepicker]="fechaCaducidad" placeholder="Fecha Caducidad Tarjeta"
+                    formControlName="fechaCaducidad" SoloFecha [required]="(opcionSeleccionada != opciones.Buscar)">
+                <mat-datepicker-toggle matSuffix [for]="fechaCaducidad"></mat-datepicker-toggle>
+                <mat-datepicker #fechaCaducidad></mat-datepicker>
+            </mat-form-field>           
+
+            <mat-form-field class="example-full-width col-md-3"
+                [hideRequiredMarker]="(opcionSeleccionada == opciones.Buscar)">
+                <input matInput placeholder="CCV" formControlName="numeroCcv" type="number" maxlength="3"
+                    [errorStateMatcher]="validador" [required]="(opcionSeleccionada != opciones.Buscar)" SoloNumeros>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width col-md-3"
+                [hideRequiredMarker]="(opcionSeleccionada == opciones.Buscar)">
+                <mat-label>Tipo Franquicia Tarjeta</mat-label>
+                <mat-select formControlName="tipoFranquicia">
+                    <mat-option *ngFor="let tipFranquiciaTarjeta of listTipFranquiciaTarjeta; index as i"
+                        [value]="listTipFranquiciaTarjeta[i].id">
+                        {{listTipFranquiciaTarjeta[i].franquicia}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            
+        </div>
+        <div *ngIf="!cargando" class="btn-formulario">
+            <button mat-button class="btn-cancelar" (click)="CambiarOpcion()">CANCELAR</button>
+            <button mat-raised-button color="primary" type="submit" (click)="EjecutarOperacion()"
+                [disabled]="!formTarjetaUsuario.valid">
+                {{(
+                opcionSeleccionada === opciones.Agregar ? 'Agregar' : ((opcionSeleccionada === opciones.Buscar) ?
+                'Buscar' : 'Guardar cambios')
+                )}}
+            </button>
+        </div>
+    </form>
+
+    <div class="table-container tabla-informacion">
+        <table mat-table [dataSource]="detalleConsultadas" matSort #tablaColumnas>
+            <ng-container matColumnDef="numeroTarjeta" sticky>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Número Tarjeta</th>
+                <td mat-cell *matCellDef="let row" (click)="SeleccionarRegistro(row)"
+                    matTooltip="Hacer clic para editar información."> {{row.numeroTarjeta}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nombreTarjeta" sticky>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Tarjeta </th>
+                <td mat-cell *matCellDef="let row"> {{row.nombreTarjeta}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="fechaCaducidad" sticky>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Caducidad </th>
+                <td mat-cell *matCellDef="let row"> {{row.fechaCaducidad | date:'dd/MM/yyyy'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="numeroCcv" sticky>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> CCV </th>
+                <td mat-cell *matCellDef="let row"> {{row.numeroCcv}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="tipoFranquicia" sticky>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Franquicia </th>
+                <td mat-cell *matCellDef="let row"> {{row.tipoFranquicia.franquicia}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="activo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+                <td mat-cell *matCellDef="let row" (click)="CambiarEstado(row)">
+                    <mat-icon color="primary"
+                        matTooltip="Hacer clic para {{(row.estadoTarjeta) ? 'Inactivar': 'Activar'}}."
+                        matTooltipPosition="below">{{(row.estadoTarjeta) ? "check_box" : "check_box_outline_blank"}}
+                    </mat-icon>
+                    {{(row.estadoTarjeta) ? "Activo" : "Inactivo"}}
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnas; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

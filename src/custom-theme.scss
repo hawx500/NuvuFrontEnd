@@ -1,0 +1,115 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+@include mat-core();
+ 
+ 
+$my-accent: (
+    50 : #ebf8e0,
+    100 : #ceeeb3,
+    200 : #aee280,
+    300 : #8dd64d,
+    400 : #74ce26,
+    500 : #5cc500,
+    600 : #54bf00,
+    700 : #4ab800,
+    800 : #41b000,
+    900 : #30a300,
+    A100 : #d8ffce,
+    A200 : #b0ff9b,
+    A400 : #89ff68,
+    A700 : #75ff4e,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+ 
+$my-primary: (
+    50 : #e0f5fb,
+    100 : #b3e5f6,
+    200 : #80d4f0,
+    300 : #4dc3e9,
+    400 : #26b6e5,
+    500 : #00a9e0,
+    600 : #00a2dc,
+    700 : #0098d8,
+    800 : #008fd3,
+    900 : #007ecb,
+    A100 : #f3faff,
+    A200 : #c0e4ff,
+    A400 : #8dceff,
+    A700 : #74c3ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$my-warn: (
+    50 : #fee1e3,
+    100 : #fcb4b8,
+    200 : #fa8389,
+    300 : #f85159,
+    400 : #f72b36,
+    500 : #f50612,
+    600 : #f40510,
+    700 : #f2040d,
+    800 : #f0030a,
+    900 : #ee0205,
+    A100 : #ffffff,
+    A200 : #ffe1e1,
+    A400 : #ffaeaf,
+    A700 : #ff9595,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+ 
+//the first two are the custom palettes we declared above
+$my-theme-primary: mat-palette($my-primary);
+$my-theme-accent: mat-palette($my-accent);
+$my-theme-warn: mat-palette($my-warn);
+ 
+$my-theme: mat-light-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
+ 
+@include angular-material-theme($my-theme);
+

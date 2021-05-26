@@ -1,0 +1,110 @@
+<app-cargando *ngIf="cargando"></app-cargando>
+
+<div class="container">
+    <h3 class="tittle-option"> Gestión Usuarios</h3>
+
+    <mat-tab-group class="tab-opciones" *ngIf="(opcionSeleccionada != opciones.Editar)"
+        (selectedIndexChange)="CambiarOpcion($event)" [selectedIndex]="opcionSeleccionada">
+        <mat-tab [label]="0">
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon" color="primary">add_circle</mat-icon>
+                Agregar
+            </ng-template>
+        </mat-tab>
+        <mat-tab [label]="1">
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon" color="primary">search</mat-icon>
+                Buscar
+            </ng-template>
+        </mat-tab>
+    </mat-tab-group>
+
+    <form [formGroup]="formUsuario" class="formulario">
+        <div class="form-row mt-3">
+
+            <mat-form-field class="example-full-width col-md-5"
+                [hideRequiredMarker]="(opcionSeleccionada == opciones.Buscar)">
+                <input matInput #campoReferencia placeholder="Nombre Usuario" formControlName="nombreUsuario"
+                    [errorStateMatcher]="validador" type="text" maxlength="40"
+                    [required]="(opcionSeleccionada != opciones.Buscar)">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width col-md-5"
+                [hideRequiredMarker]="(opcionSeleccionada == opciones.Buscar)">
+                <input matInput #campoReferencia placeholder="Apellido Usuario" formControlName="apellidoUsuario"
+                    [errorStateMatcher]="validador" type="text" maxlength="40"
+                    [required]="(opcionSeleccionada != opciones.Buscar)">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width col-md-3"
+                [hideRequiredMarker]="(opcionSeleccionada == opciones.Buscar)">
+                <input matInput #campoReferencia placeholder="Identificacion Usuario"
+                    formControlName="identificacionUsuario" [errorStateMatcher]="validador" type="text" maxlength="40"
+                    [required]="(opcionSeleccionada != opciones.Buscar)">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width col-md-3"
+                [hideRequiredMarker]="(opcionSeleccionada == opciones.Buscar)">
+                <mat-label>Tipo Identificación</mat-label>
+                <mat-select formControlName="tipoIdentificacion">
+                    <mat-option *ngFor="let tipidentificacion of listTipIdentificacion; index as i"
+                        [value]="listTipIdentificacion[i].id">
+                        {{listTipIdentificacion[i].tipoDocumento}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="btn-formulario">
+            <button mat-button class="btn-cancelar" type="button" (click)="CambiarOpcion()">CANCELAR</button>
+            <button mat-raised-button color="primary" type="submit" (click)="EjecutarOperacion()"
+                [disabled]="!formUsuario.valid">
+                {{(
+                    opcionSeleccionada === opciones.Agregar ? 'Agregar' : ((opcionSeleccionada === opciones.Buscar) ?
+                    'Buscar' : 'Guardar cambios')
+                    )}}</button>
+        </div>
+    </form>
+
+    <div [hidden]="!datosCargados" class="tabla">
+
+        <div class="table-container tabla-informacion">
+            <table mat-table [dataSource]="datosConsultados" matSort #tablaDatos>
+                <ng-container matColumnDef="nombreUsuario">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Usuario </th>
+                    <td mat-cell *matCellDef="let row" (click)="SeleccionarRegistro(row)"
+                    matTooltip="Hacer clic para editar información.">
+                    {{row.nombreUsuario}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="apellidoUsuario">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido Usuario </th>
+                    <td mat-cell *matCellDef="let row"> {{row.apellidoUsuario}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="identificacionUsuario">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Identificación Usuario </th>
+                    <td mat-cell *matCellDef="let row"> {{row.identificacionUsuario}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="TipIdentificacionUsuario">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Identificación Usuario </th>
+                    <td mat-cell *matCellDef="let row"> {{row.tipoIdentificacion.tipoDocumento}} </td>
+                </ng-container>              
+
+                <ng-container matColumnDef="buscar">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Ver Detalle </th>
+                    <td mat-cell *matCellDef="let row" (click)='buscarDetalle(row)'>
+                        <mat-icon color="primary" aria-label="find icon" matTooltip="Hacer clic para ver detalle"
+                            matTooltipPosition="below">search</mat-icon>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnas; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnas;">
+                </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+        </div>        
+    </div>
+</div>

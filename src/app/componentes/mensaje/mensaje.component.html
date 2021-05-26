@@ -1,0 +1,13 @@
+<div class="contenedor-iconos">
+    <mat-icon class="icono" color="primary" class="example-tab-icon" *ngIf="!isError">info</mat-icon>
+    <mat-icon class="icono" color="warn" class="example-tab-icon" *ngIf="isError">error</mat-icon>
+    <h1 mat-dialog-title color="primary" [ngClass]="{'titulo-error': isError}">{{datosMensaje.titulo}}</h1>
+  </div>
+  
+  <div class="texto-mensaje">
+    <p>{{datosMensaje.mensaje}}</p>
+  </div>
+  <div mat-dialog-actions class="justify-content-end mt-2 mb-1">
+    <button mat-raised-button color="warn" *ngIf="mostrarCancelar" (click)="RetornarRespuesta(false)">Cancelar</button>
+    <button mat-raised-button class="boton-ok" (click)="RetornarRespuesta(true)" cdkFocusInitial>{{ textOk }}</button>
+  </div>

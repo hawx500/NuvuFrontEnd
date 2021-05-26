@@ -1,0 +1,18 @@
+app-menu {
+    width: 100%;
+    max-width: 1920px;
+    height: 250px;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+}
+
+.contenedor {
+    width: auto;
+    height: 2.5rem;
+    top: 250px;
+    right: 0.5rem;
+    position: fixed;   
+    align-items: center;
+    z-index: 1;
+  }
